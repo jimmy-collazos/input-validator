@@ -1,6 +1,7 @@
 {
   "name": "input-validator",
   "devDependencies": {
-    "angular":"1.2.3"
+    "angular":"1.2.3",
+    "angular-mocks":"1.2.3"
   }
 }
