@@ -18,7 +18,8 @@ describe('directives', function() {
         $scope = _$rootScope_;
         $compile = _$compile_;
     }));
-    describe ('add function validator by directive', function() {
+
+    describe ('add Object validator by directive', function() {
         it('add simple object validator', function() {
             $scope.name = 'jimmy';
             $scope.myValidator = {
@@ -43,4 +44,35 @@ describe('directives', function() {
             expect(element.hasClass('ng-invalid-'+$scope.myValidator.id)).toBe(true);
         });
     });
+
+    describe ('add function validator by directive', function() {
+        it('add simple object validator', function() {
+            $scope.name = 'jimmy';
+            $scope.myValidator = function(inputValue){
+                return (inputValue.length > 1);
+            };
+            var element = compileDirective('<input name="test" validator="myValidator" ng-model="name"/>', $scope);
+            expect(element).toBeValid();
+            expect(element).toBePristine();
+        });
+    });
+
+    describe ('add validator in $validatorProvider', function() {
+        beforeEach(inject(function ($validator) {
+            $validator.register('mitest', function(inputValue){
+                 return (inputValue.length > 1);
+            });
+        }));
+
+        it('test', function() {
+           $scope.name = 'jimmy';
+           $scope.myValidator = 'mitest';
+           var element = compileDirective('<input name="test" validator="myValidator" ng-model="name"/>', $scope);
+           expect(element).toBeValid();
+           expect(element).toBePristine();
+           expect(element.hasClass('ng-valid-mitest')).toBe(true);
+           expect(element.hasClass('ng-invalid-mitest')).toBe(false);
+        });
+    });
+
 });
