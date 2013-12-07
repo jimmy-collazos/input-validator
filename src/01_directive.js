@@ -1,7 +1,6 @@
 angular.module('input-validator').directive('validator', function($validator) {
     var ERROR_REGEXP  = /0/;
-    var controller;
-    var nexvalidate = function(arrValidators){
+    var nexvalidate = function(arrValidators, controller){
         arrValidators = angular.isArray(arrValidators) ? arrValidators : [arrValidators];
         return function(value){
             var currentValue = angular.isDefined(value) ? value : '';
@@ -21,11 +20,8 @@ angular.module('input-validator').directive('validator', function($validator) {
         require: 'ngModel',
         scope: { validator: '=validator' },
         link: function(scope, elm, attrs, ctrl) {
-            validators = scope.validator;
-            controller = ctrl;
-
-            ctrl.$formatters.push( nexvalidate(scope.validator) );
-            ctrl.$parsers.push( nexvalidate(scope.validator) );
+            ctrl.$formatters.push( nexvalidate(scope.validator, ctrl) );
+            ctrl.$parsers.push( nexvalidate(scope.validator, ctrl) );
         }
     };
 
