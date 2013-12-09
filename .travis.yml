@@ -1,0 +1,6 @@
+nguage: node_js
+node_js:
+  - 0.10
+
+script
+  - "karma start karma-unit.conf.js"
