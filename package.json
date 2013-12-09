@@ -22,6 +22,6 @@
     "grunt-replace": "~0.5.1"
   },
   "scripts": {
-    "test": "./node_modules/.bin/karma start --browsers Firefox --single-run karma-unit.conf.js"
+    "test": "./node_modules/.bin/karma start --single-run --browsers Firefox karma-unit.conf.js"
   }
 }
