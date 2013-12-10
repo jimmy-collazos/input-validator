@@ -3,6 +3,12 @@ angular.module('input-validator').provider('$validator', function() {
     var validators = this.$$validators = {};
     this.$get = function(){
         return {
+            create: function(id, fnTest){
+                return {
+                    id: id,
+                    test: fnTest
+                };
+            },
             register: function(id, fnTest){
                 if(validators.hasOwnProperty(id)) throw new Error('Validator ID is already exist');
                 if( ! angular.isFunction(fnTest) ) throw new Error('Validator test funcion not is defined!');

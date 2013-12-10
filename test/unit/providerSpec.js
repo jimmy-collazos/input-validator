@@ -59,8 +59,14 @@ describe('directives', function() {
             expect(result.test3).toBe(true);
             expect(result.test4).toBe(false);
 
-
-
+        });
+    });
+    describe ('Public methods', function() {
+        it('create()', function() {
+            var method = function(inputValidator){ return true; };
+            var myValidate = $validator.create('myvalidId', method);
+            expect(myValidate.id).toEqual('myvalidId');
+            expect(myValidate.test).toEqual(method);
         });
     });
 });
