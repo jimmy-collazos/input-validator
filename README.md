@@ -3,6 +3,11 @@
 This is a Angular-Module for add validators in input and textarea elements.
 You can add validator method by $injector or directive.
 
+## Install module
+```javascript
+var mainAngularModule = angular.module('app', ['input-validator']);
+```
+
 ## Add validator via $validatorProvider
 ```javascript
 mainAngularModule.config(['$validatorProvider', function($validatorProvider){
