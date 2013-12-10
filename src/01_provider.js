@@ -1,6 +1,11 @@
 angular.module('input-validator').provider('$validator', function() {
     var AUTO_ID_PREFIX = 'validator';
     var validators = this.$$validators = {};
+    var addValidator = this.$add = function(id, fnTest){
+        if(validators.hasOwnProperty(id)) throw new Error('Validator ID is already exist');
+        if( ! angular.isFunction(fnTest) ) throw new Error('Validator test funcion not is defined!');
+        validators[id] = fnTest;
+    }
     this.$get = function(){
         return {
             create: function(id, fnTest){
@@ -8,11 +13,6 @@ angular.module('input-validator').provider('$validator', function() {
                     id: id,
                     test: fnTest
                 };
-            },
-            register: function(id, fnTest){
-                if(validators.hasOwnProperty(id)) throw new Error('Validator ID is already exist');
-                if( ! angular.isFunction(fnTest) ) throw new Error('Validator test funcion not is defined!');
-                validators[id] = fnTest;
             },
             get:function(id){
                 return validators[id];

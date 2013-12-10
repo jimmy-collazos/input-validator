@@ -3,6 +3,7 @@ describe('directives', function() {
     var $scope;
     var $compile;
     var $validator;
+    var $validatorProvider;
 
     //método para compilar nuestra directiva
     var compileDirective = function (markup, scope) {
@@ -12,7 +13,9 @@ describe('directives', function() {
     };
 
     //arrancamos el modulo
-    beforeEach(module('input-validator'));
+    beforeEach(module('input-validator', function(_$validatorProvider_){
+        $validatorProvider = _$validatorProvider_;
+    }));
 
     //guardamos la referencia al $rootScope y $compile de nuestra aplicación
     beforeEach(inject(function (_$rootScope_, _$compile_, _$validator_) {
@@ -20,6 +23,20 @@ describe('directives', function() {
         $compile = _$compile_;
         $validator = _$validator_;
     }));
+    describe ('add validator in $validatorProvider', function() {
+        it('test', function() {
+            $validatorProvider.$add('mitest', function(inputValue){
+                 return (inputValue.length > 1);
+            });
+           $scope.name = 'jimmy';
+           $scope.myValidator = 'mitest';
+           var element = compileDirective('<input name="test" validator="myValidator" ng-model="name"/>', $scope);
+           expect(element).toBeValid();
+           expect(element).toBePristine();
+           expect(element.hasClass('ng-valid-mitest')).toBe(true);
+           expect(element.hasClass('ng-invalid-mitest')).toBe(false);
+        });
+    });
 
     describe ('add Object validator by directive', function() {
         it('add simple object validator', function() {
@@ -53,22 +70,6 @@ describe('directives', function() {
             var element = compileDirective('<input name="test" validator="myValidator" ng-model="name"/>', $scope);
             expect(element).toBeValid();
             expect(element).toBePristine();
-        });
-    });
-
-    describe ('add validator in $validatorProvider', function() {
-        it('test', function() {
-            $validator.register('mitest', function(inputValue){
-                 return (inputValue.length > 1);
-            });
-
-            $scope.name = 'jimmy';
-            $scope.myValidator = 'mitest';
-            var element = compileDirective('<input name="test" validator="myValidator" ng-model="name"/>', $scope);
-            expect(element).toBeValid();
-            expect(element).toBePristine();
-            expect(element.hasClass('ng-valid-mitest')).toBe(true);
-            expect(element.hasClass('ng-invalid-mitest')).toBe(false);
         });
     });
 
