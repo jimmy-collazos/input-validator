@@ -11,7 +11,7 @@
   "ignore": [
     "src",
     "test",
-    "karma-unit.conf",
+    "karma-unit.conf.js",
     "package.json",
     ".travis.yml"
   ],
