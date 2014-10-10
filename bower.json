@@ -1,7 +1,24 @@
 {
   "name": "input-validator",
+  "version":"0.0.1",
+  "homepage":"https://github.com/acido69/input-validator",
+  "autor":["Jimmy.Collazos"],
+  "description": "Add validator functions in your forms",
+  "main": [
+    "dist/input-validator.min.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "src",
+    "test",
+    "karma-unit.conf",
+    "package.json",
+    ".travis.yml"
+  ],
+  "dependencies": {
+    "angular": "~1.2.18"
+  },
   "devDependencies": {
-    "angular":"1.2.3",
     "angular-mocks":"1.2.3"
   }
 }

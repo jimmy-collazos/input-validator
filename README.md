@@ -3,10 +3,12 @@
 This is a Angular-Module for add validators in input and textarea elements.
 You can add validator method by $injector or directive.
 
-## Install module
-```javascript
-var mainAngularModule = angular.module('app', ['input-validator']);
-```
+## Installation using [Bower](http://bower.io/)
+
+- `bower install input-validator`
+- Inside your HTML add
+  - select.js: `<script src="bower_components/input-validator/dist/input-validator.min.js"></script>`
+- Add the `input-validator` module as a dependency: `angular.module("myApp", ["input-validator"]);`
 
 ## Add validator via $validatorProvider
 ```javascript
