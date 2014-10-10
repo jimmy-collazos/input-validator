@@ -1,4 +1,4 @@
-angular.module('input-validator').directive('validator', function($validator) {
+angular.module('input-validator').directive('validator', [ '$validator', function($validator) {
     var ERROR_REGEXP  = /0/;
     var nexvalidate = function(arrValidators, controller){
         arrValidators = angular.isArray(arrValidators) ? arrValidators : [arrValidators];
@@ -25,4 +25,4 @@ angular.module('input-validator').directive('validator', function($validator) {
         }
     };
 
-});
+}]);
