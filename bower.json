@@ -11,9 +11,7 @@
   "ignore": [
     "src",
     "test",
-    "karma-unit.conf.js",
-    "package.json",
-    ".travis.yml"
+    "karma-unit.conf.js"
   ],
   "dependencies": {
     "angular": "~1.2.3"
