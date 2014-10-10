@@ -67,7 +67,7 @@ describe('directives', function() {
             $scope.myValidator = function(inputValue){
                 return (inputValue.length > 1);
             };
-            var element = compileDirective('<input name="test" validator="myValidator" ng-model="name"/>', $scope);
+            var element = compileDirective('<input name="test" data-validator="myValidator" ng-model="name"/>', $scope);
             expect(element).toBeValid();
             expect(element).toBePristine();
         });
